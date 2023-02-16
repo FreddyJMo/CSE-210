@@ -2,63 +2,56 @@ using System;
 
 public class Activity
 {
-    private string _startActivity, _description, endActivity, _nameActivity;
-    private int _numSectoRun, _counter, _duration;
+    protected string _startMessage, _name;
+    protected int _duration;
+    protected bool _completed;
+    public const string wellDoneMessage = "Well Done!!";
+    public const string preparationMessage = "Get Ready...";
+    public const int spinnerDuration = 5;
 
-    public Activity(string nameActivity, string startActivity, string description, string endActivity, int counter, int duration)
+    public Activity()
     {
-        _startActivity = startActivity;
-        _description = description;
-        _endActivity = endActivity;
-        _counter = counter;
+        _duration = 0;
+        _completed = false;
+    }
+
+    public string GetStartMessage()
+    {
+        return _startMessage;
+    }
+    
+    public void SetStartMessage(string startMessage)
+    {
+        _startMessage = startMessage;
+    }
+
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public void SetName(string name)
+    {
+        _name = name;
+    }
+
+    public int GetDuration()
+    {
+        return _duration;
+    }
+
+    public void SetDuration(int duration)
+    {
         _duration = duration;
-        _nameActivity = nameActivity;
-
-        Activity a1 = new Activity("Breathing", "Start info", "Description");
     }
 
-    public string GetActivityName()
+    public bool Completed()
     {
-        return _nameActivity;
+        return _completed;
     }
-    public string StartingMessage(string nameActivity, string description): base()
+    public void SetCompleted(bool completed)
     {
-        Console.WriteLine($"This activity is the {_nameActivity}. {_description}");
-        Console.WriteLine($"How many seconds would you like to do the {_nameActivity} for?");
-        Console.Write();
-    }
-    public string EndingMessage()
-    {
-        //return
-    }
-
-    public void Spinner(int numSecondsToRun)
-    {
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
-        while (stopwatch.EllapsedMillisecond / 1000 < numSecondsToRun)
-        {
-            spinnerCounter++;
-            switch(spinnerCounter %4 )
-            {
-                case 0 : Console.Write("/"); break;
-                case 1 : Console.Write("-"); break;
-                case 2 : Console.Write("\\"); break;
-                case 3 : Console.Write("|"); break;
-            }
-            Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-            Thread.Sleep(200);
-        }
-        Console.Write("");
-    }
-    public void CountDown(int numSecondsToRun)
-    {
-        for (int i = 1; i <= numSecondsToRun; i++)
-        {
-            Console.Write(string.Format("You may begin in {0}", i));
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Thread.Sleep(1000);
-        }
+        _completed = completed;
     }
 
 }

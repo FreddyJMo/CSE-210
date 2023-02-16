@@ -2,43 +2,62 @@ using System;
 
 public class ReflectionActivity : Activity
 {
-    private string _reflectionPrompt, _reflectionQuestion = "";
 
-    public void RunReflecting()
+    private string _prompt, _question;
+    public const int reflectionDuration = 5;
+    protected List<string> _prompts = new List<string> {
+        "Think of a time when you stood up for someone else.",
+        "Think of a time when you did something really difficult.",
+        "Think of a time when you helped someone in need.",
+        "Think of a time when you did something truly selfless."
+    };
+
+    protected List<string> _questions = new List<string> {
+        "Why was this experience meaningful to you?",
+        "Have you ever done anything like this before?",
+        "How did you get started?",
+        "How did you feel when it was complete?",
+        "What made this time different than other times when you were not as successful?",
+        "What is your favorite thing about this experience?",
+        "What could you learn from this experience that applies to other situations?",
+        "What did you learn about yourself through this experience?",
+        "How can you keep this experience in mind in the future?"
+    };
+
+    public ReflectionActivity() : base()
     {
-        Console.WriteLine("Reflecting Activity");
+        _name = "Reflection Activity";
+        _startMessage = $"Welcome to the {_name} activity"
+        + "\n\nThis activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
     }
-    public void DisplayPrompt()
-    {
-        Random rnd = new Random();
-        List<string> prompts = new List<string>();
-        prompts.Add("Think of a time when you stood up for someone else");
-        prompts.Add("Think of a time when you did something really difficult");
-        prompts.Add("Think of a time when you helped someone in need");
-        prompts.Add("Think of a time when you helped someone in need");
 
-        int index = rnd.Next(0,3);
-        Console.WriteLine(prompts[index]);
-        _reflectionPrompt = prompts[index];
+    public string GetPrompt()
+    {
+        return _prompt;
     }
     
-     public void DisplayQuestion()
+    public string GetQuestion()
     {
-        Random rnd = new Random();
-        List<string> questions = new List<string>();
-        questions.Add("Why was this experience meaningful to you?");
-        questions.Add("Have you ever done aything like this before?");
-        questions.Add("How did you get started?");
-        questions.Add("How did you feel when it was complete?");
-        questions.Add("What made this time different than other times when you were not as successful?");
-        questions.Add("What is your favorite thing about this experience?");
-        questions.Add("What could you learn from this experience that applies to other situations?");
-        questions.Add("What did you learn abput yourself through this experience?");
-        questions.Add("How can you keep this experience in mind in the future?");
-
-        int index = rnd.Next(0,3);
-        Console.WriteLine(questions[index]);
-        Console.WriteLine(questions[index]);
-        _reflectionQuestion = questions[index];
+        return _question;
     }
+
+    public List<string> GetQuestions()
+    {
+        return _questions;
+    }
+
+    public void GenerateRandomPrompt()
+    {
+        Random randomPrompt = new Random();
+        int chosenPromptIndex = randomPrompt.Next(4);
+        _prompt = _prompts[chosenPromptIndex];
+    }
+    public void GenerateRandomQuestion()
+    {
+        Random randomQuestion = new Random();
+        int chosenQuestionIndex = randomQuestion.Next(9);
+        _question = _questions[chosenQuestionIndex];
+    }
+
+
 }

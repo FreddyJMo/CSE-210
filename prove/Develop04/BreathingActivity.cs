@@ -2,19 +2,16 @@ using System;
 
 public class BreathingActivity : Activity
 {
-    public string _inMessage, _outMessage = "";
+    public const string breatheInMessage = "Breathe in...";
+    public const string breatheOutMessage = "Now breathe out...";
+    public const int breatheInDuration = 4;
+    public const int breatheOutDuration = 6;
 
-    public void RunBreathing(string inMessage, string outMessage) : base (nameActivity, description)
+    public BreathingActivity() : base()
     {
-    Console.WriteLine("Breathing Activity");
-    Activity.StartingMessage("Breathing", "This activity will help you relax by walking through breathing in and out");
-    } 
-
-    public void BreathingExercise() : base (numSecondsToRun)
-    {
-        Console.WriteLine("Breathe In");
-        Activity.CountDown(int numSecondsToRun);
-        Console.WriteLine("Breathe Out");
+        _name = "Breathing Activity";
+        _startMessage = $"Welcome to the {_name} activity"
+        + "\nThis activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
     }
 
 }

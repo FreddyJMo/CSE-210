@@ -2,28 +2,34 @@ using System;
 
 public class ListingActivity : Activity
 {
-    public string _listingPrompt, _responsePrompt = "";
 
-    public void RunListing();
-    public void ProvidePrompt()
-    {
-        Random rnd = new Random();
-        List<string> prompts = new List<string>();
-        prompts.Add("Who are people that you appreciate?");
-        prompts.Add("What are personal strenghts of yours?");
-        prompts.Add("Who are people that you have helped this week?");
-        prompts.Add("When have you felt the Holy Ghost this month?");
-        prompts.Add("Who are some of your personal heroes?");
+    public const int listingDuration = 5;
+    private string _prompt;
+    protected List<string> _promptsList = new List<string> {
+        "Who are people that you appreciate?",
+        "What are personal strengths of yours?",
+        "Who are people that you have helped this week?",
+        "When have you felt the Holy Ghost this month?",
+        "Who are some of your personal heroes?"
+    };
 
-        int index = rnd.Next(0,4);
-        Console.WriteLine(prompts[index]);
-        _listingPrompt = prompts[index];
-    }
-    public void EnterResponse()
+    public ListingActivity() : base()
     {
-        _responsePrompt = Console.ReadLine();
+        _name = "Listing Activity";
+        _startMessage = $"Welcome to the {_name} activity"
+        + "\n\nThis activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
     }
 
-    public int ListAndCount();
+    public string GetPrompt()
+    {
+        return _prompt;
+    }
+
+    public void GenerateRandomPrompt()
+    {
+        Random randomPrompt = new Random();
+        int chosenPromptIndex = randomPrompt.Next(5);
+        _prompt = _promptsList[chosenPromptIndex];
+    }
 
 }
